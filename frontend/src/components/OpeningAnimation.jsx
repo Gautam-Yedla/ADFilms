@@ -1,8 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
 
-// Removed OpeningAnimationProps interface
-
 // Changed to a named export, removed React.FC and type annotation
 export const OpeningAnimation = ({ onAnimationComplete }) => {
   // 0: Initial Delay, 1: A appears, 2: D appears
@@ -35,7 +33,7 @@ export const OpeningAnimation = ({ onAnimationComplete }) => {
   };
 
   useEffect(() => {
-    let timer; // Removed ReturnType<typeof setTimeout>
+    let timer; 
     switch (step) {
       case 0: timer = setTimeout(() => setStep(1), timings.initialDelay); break;
       case 1: timer = setTimeout(() => setStep(2), timings.aAppearDuration + timings.dDelay - 100); break; 
@@ -55,8 +53,8 @@ export const OpeningAnimation = ({ onAnimationComplete }) => {
   }, [step, onAnimationComplete, timings]);
 
   const letterBaseClasses = "inline-block font-extrabold text-7xl md:text-9xl lg:text-[10rem] transition-all ease-out";
-  const adLetterBaseClasses = `${letterBaseClasses} text-white`;
-  const filmsLetterBaseClasses = `${letterBaseClasses} text-sky-400`;
+  const adLetterBaseClasses = `${letterBaseClasses}`; 
+  const filmsLetterBaseClasses = `${letterBaseClasses}`;
 
   const getLetterClasses = (
     triggerStep,
@@ -71,55 +69,74 @@ export const OpeningAnimation = ({ onAnimationComplete }) => {
 
 
   return (
-    <div className="fixed inset-0 bg-slate-900 flex items-center justify-center z-50 overflow-hidden select-none">
+    <div 
+      className="fixed inset-0 flex items-center justify-center z-50 overflow-hidden select-none opening-animation-background"
+    >
       <div className="text-center">
         {/* AD Part */}
         <div className={`inline-block ${adContainerBase} ${adContainerTransform}`}>
-          <span className={`${adLetterBaseClasses} ${getLetterClasses(1, 'duration-[600ms]', '-translate-x-6 md:-translate-x-10')}`}>A</span>
-          <span className={`${adLetterBaseClasses} ${getLetterClasses(2, 'duration-[600ms]', 'translate-x-6 md:translate-x-10')}`}>D</span>
+          <span className={`${adLetterBaseClasses} ${getLetterClasses(1, 'duration-[600ms]', '-translate-x-6 md:-translate-x-10')}`} style={{ color: '#d4b06e' }}>A</span>
+          <span className={`${adLetterBaseClasses} ${getLetterClasses(2, 'duration-[600ms]', 'translate-x-6 md:translate-x-10')}`} style={{ color: '#d4b06e' }}>D</span>
         </div>
 
         {/* Transition Line */}
-        <div className="h-1 md:h-[6px] mx-auto my-2 md:my-4 bg-slate-500/50 transition-all ease-out duration-500 relative overflow-hidden"
+        <div className="h-1 md:h-[6px] mx-auto my-2 md:my-4 bg-neutral-500/50 transition-all ease-out duration-500 relative overflow-hidden"
              style={{ 
                width: step >= 3 ? '100%' : '0%',
-               maxWidth: step >= 9 ? '180px' : '200px', // slightly shrink on polish
+               maxWidth: step >= 9 ? '180px' : '200px', 
                opacity: step >= 3 && step < 9 ? 1 : 0,
                transitionDuration: step ===3 ? `${timings.lineDuration}ms` : '300ms',
-               transitionTimingFunction: 'cubic-bezier(0.68, -0.55, 0.27, 1.55)' // bouncy
+               transitionTimingFunction: 'cubic-bezier(0.68, -0.55, 0.27, 1.55)'
              }}
         >
-            <div className="absolute top-0 left-0 h-full bg-sky-300 animate-shine"
+            <div className="absolute top-0 left-0 h-full bg-amber-500 animate-shine"
                  style={{
                     width: '50px',
                     animationDuration: '1.5s',
-                    opacity: step >=3 && step < 9 ? 0.7 : 0,
+                    opacity: step >=3 && step < 9 ? 0.8 : 0,
                  }}
             />
         </div>
 
-
         {/* FILMS Part */}
         <div className={`inline-block ${adContainerBase} ${adContainerTransform}`}>
-          <span className={`${filmsLetterBaseClasses} ${getLetterClasses(4, 'duration-[500ms]', '-translate-x-8')} `} style={{ transitionDelay: step === 3 ? `${timings.fDelay}ms`: '0ms'}}>F</span>
-          <span className={`${filmsLetterBaseClasses} ${getLetterClasses(5, 'duration-[500ms]', '-translate-x-4')}`} style={{ transitionDelay: step === 4 ? `${timings.iDelay}ms`: '0ms'}}>I</span>
-          <span className={`${filmsLetterBaseClasses} ${getLetterClasses(6, 'duration-[500ms]')}`} style={{ transitionDelay: step === 5 ? `${timings.lDelay}ms`: '0ms'}}>L</span>
-          <span className={`${filmsLetterBaseClasses} ${getLetterClasses(7, 'duration-[500ms]', 'translate-x-4')}`} style={{ transitionDelay: step === 6 ? `${timings.mDelay}ms`: '0ms'}}>M</span>
-          <span className={`${filmsLetterBaseClasses} ${getLetterClasses(8, 'duration-[500ms]', 'translate-x-8')}`} style={{ transitionDelay: step === 7 ? `${timings.sDelay}ms`: '0ms'}}>S</span>
+          <span className={`${filmsLetterBaseClasses} ${getLetterClasses(4, 'duration-[500ms]', '-translate-x-8')} `} style={{ transitionDelay: step === 3 ? `${timings.fDelay}ms`: '0ms', color: '#d4b06e'}}>F</span>
+          <span className={`${filmsLetterBaseClasses} ${getLetterClasses(5, 'duration-[500ms]', '-translate-x-4')}`} style={{ transitionDelay: step === 4 ? `${timings.iDelay}ms`: '0ms', color: '#d4b06e'}}>I</span>
+          <span className={`${filmsLetterBaseClasses} ${getLetterClasses(6, 'duration-[500ms]')}`} style={{ transitionDelay: step === 5 ? `${timings.lDelay}ms`: '0ms', color: '#d4b06e'}}>L</span>
+          <span className={`${filmsLetterBaseClasses} ${getLetterClasses(7, 'duration-[500ms]', 'translate-x-4')}`} style={{ transitionDelay: step === 6 ? `${timings.mDelay}ms`: '0ms', color: '#d4b06e'}}>M</span>
+          <span className={`${filmsLetterBaseClasses} ${getLetterClasses(8, 'duration-[500ms]', 'translate-x-8')}`} style={{ transitionDelay: step === 7 ? `${timings.sDelay}ms`: '0ms', color: '#d4b06e'}}>S</span>
         </div>
 
-        {/* Polish Glow - more subtle */}
+        {/* Polish Glow */}
         <div
           className={`absolute inset-0 -z-10 transition-opacity duration-1000 ease-out
-            ${step === 9 ? 'opacity-30' : 'opacity-0'}`}
+            ${step === 9 ? 'opacity-100' : 'opacity-0'}`}
           style={{
-            background: 'radial-gradient(circle, rgba(186,230,253,0.5) 0%, rgba(14,116,144,0) 70%)',
+            background: 'radial-gradient(circle, rgba(217, 119, 6, 0.3) 0%, rgba(217, 119, 6, 0) 70%)', 
             transform: 'scale(1.5)'
           }}
         />
       </div>
       <style>
         {`
+          .opening-animation-background {
+            --gradient-start: #a6a6a6;
+            --gradient-end: #ffffff;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            animation: cinematicBreathe 10s ease-in-out infinite;
+          }
+
+          @keyframes cinematicBreathe {
+            0%, 100% {
+              --gradient-start: #a6a6a6;
+              --gradient-end: #ffffff;
+            }
+            50% {
+              --gradient-start: #b0b0b0; /* Slightly Lighter Grey */
+              --gradient-end: #f5f5f5;   /* Very Light Grey / Off-white */
+            }
+          }
+
           @keyframes shine {
             0% { transform: translateX(-100%) skewX(-20deg); }
             100% { transform: translateX(calc(200px + 100%)) skewX(-20deg); } /* 200px is maxWidth of line */
