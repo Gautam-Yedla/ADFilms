@@ -1,23 +1,25 @@
 
+
 import React, { useState, useEffect } from 'react';
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import { OpeningAnimation } from './components/OpeningAnimation.jsx'; 
 import HomePage from './pages/HomePage.jsx';
 import YoutubePage from './pages/YoutubePage.jsx';
 import WeddingPage from './pages/WeddingPage.jsx';
-import CommercialsPage from './pages/CommercialsPage.jsx';
-import { PlaceholderPortfolioPage, PlaceholderAboutPage, PlaceholderContactPage } from '../src/pages/PlaceholderPage.jsx';
+// Removed CommercialsPage import
+import CommercialsLayout from '../src/pages/commercials/CommercialsLayout.jsx'; 
+import { PlaceholderPortfolioPage, PlaceholderAboutPage, PlaceholderContactPage } from './pages/PlaceholderPage.jsx';
 
-
-const App = () => {
+// Inner component to use useLocation hook as App itself is defining HashRouter
+const AppContent = () => {
+  const location = useLocation();
   const [showOpening, setShowOpening] = useState(true);
   const [appVisible, setAppVisible] = useState(false);
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) return savedTheme;
-    // Default to system preference if available, otherwise light
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       return 'dark';
     }
@@ -46,11 +48,14 @@ const App = () => {
 
   useEffect(() => {
     const logoImage = new Image();
-    logoImage.src = '../src/assets/logo.png'; 
+    logoImage.src = '/logo.png'; 
   }, []);
 
+  // Determine if the current route is part of the commercials section using useLocation
+  const isCommercialsSection = location.pathname.startsWith('/commercials');
+
   return (
-    <HashRouter>
+    <>
       {showOpening && <OpeningAnimation onAnimationComplete={handleAnimationComplete} />}
       
       <div 
@@ -61,25 +66,33 @@ const App = () => {
           appVisible ? 'opacity-100' : 'opacity-0 pointer-events-none' 
         }`}
       >
-        {appVisible && (
-          <>
-            <Header theme={theme} toggleTheme={toggleTheme} />
-            <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/youtube" element={<YoutubePage />} />
-                <Route path="/wedding" element={<WeddingPage />} />
-                <Route path="/commercials" element={<CommercialsPage />} />
-                <Route path="/portfolio" element={<PlaceholderPortfolioPage />} />
-                <Route path="/about" element={<PlaceholderAboutPage />} />
-                <Route path="/contact" element={<PlaceholderContactPage />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Routes>
-            </main>
-            <Footer />
-          </>
+        {appVisible && !isCommercialsSection && (
+          <Header theme={theme} toggleTheme={toggleTheme} />
+        )}
+        <main className={`flex-grow ${!isCommercialsSection ? 'container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12' : ''}`}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/youtube" element={<YoutubePage />} />
+            <Route path="/wedding" element={<WeddingPage />} />
+            <Route path="/commercials/*" element={<CommercialsLayout theme={theme} toggleTheme={toggleTheme} />} /> 
+            <Route path="/portfolio" element={<PlaceholderPortfolioPage />} />
+            <Route path="/about" element={<PlaceholderAboutPage />} />
+            <Route path="/contact" element={<PlaceholderContactPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
+        {appVisible && !isCommercialsSection && (
+          <Footer />
         )}
       </div>
+    </>
+  );
+};
+
+const App = () => {
+  return (
+    <HashRouter>
+      <AppContent />
     </HashRouter>
   );
 };
