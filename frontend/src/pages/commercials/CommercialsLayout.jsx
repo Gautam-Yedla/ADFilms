@@ -2,7 +2,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import CommercialsHeader from './CommercialsHeader.jsx';
-import CommercialsFooter from './CommercialsFooter.jsx';
+import CommercialsFooter from '../../components/Footer.jsx'; // Assuming Footer is used in commercials layout
 import CommercialsHomePage from './CommercialsHomePage.jsx';
 import { CommercialsPlaceholderWorkPage, CommercialsPlaceholderServicesPage, CommercialsPlaceholderContactPage } from './CommercialsPlaceholderPages.jsx';
 

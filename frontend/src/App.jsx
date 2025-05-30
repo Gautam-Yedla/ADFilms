@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/Header.jsx';
@@ -10,7 +9,12 @@ import YoutubePage from './pages/YoutubePage.jsx';
 import WeddingPage from './pages/WeddingPage.jsx';
 // Removed CommercialsPage import
 import CommercialsLayout from '../src/pages/commercials/CommercialsLayout.jsx'; 
-import { PlaceholderPortfolioPage, PlaceholderAboutPage, PlaceholderContactPage } from './pages/PlaceholderPage.jsx';
+// Removed PortfolioPage import
+import { PlaceholderAboutPage, PlaceholderContactPage } from './pages/PlaceholderPage.jsx'; 
+// import Chatbot from './components/Chatbot.jsx'; 
+
+// Theme can be 'light' or 'dark'
+/** @typedef {'light' | 'dark'} Theme */
 
 // Inner component to use useLocation hook as App itself is defining HashRouter
 const AppContent = () => {
@@ -19,7 +23,9 @@ const AppContent = () => {
   const [appVisible, setAppVisible] = useState(false);
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) return savedTheme;
+    if (savedTheme === 'light' || savedTheme === 'dark') { // Validate savedTheme
+      return savedTheme;
+    }
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       return 'dark';
     }
@@ -75,7 +81,7 @@ const AppContent = () => {
             <Route path="/youtube" element={<YoutubePage />} />
             <Route path="/wedding" element={<WeddingPage />} />
             <Route path="/commercials/*" element={<CommercialsLayout theme={theme} toggleTheme={toggleTheme} />} /> 
-            <Route path="/portfolio" element={<PlaceholderPortfolioPage />} />
+            {/* Removed /portfolio route */}
             <Route path="/about" element={<PlaceholderAboutPage />} />
             <Route path="/contact" element={<PlaceholderContactPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
@@ -85,15 +91,14 @@ const AppContent = () => {
           <Footer />
         )}
       </div>
+      {/* {appVisible && <Chatbot theme={theme} />} */}
     </>
   );
 };
 
 const App = () => {
-  return (
-    <HashRouter>
-      <AppContent />
-    </HashRouter>
+  return React.createElement(HashRouter, null, 
+    React.createElement(AppContent)
   );
 };
 
