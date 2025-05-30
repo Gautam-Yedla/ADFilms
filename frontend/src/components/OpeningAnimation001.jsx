@@ -120,21 +120,7 @@ export const OpeningAnimation = ({ onAnimationComplete }) => {
       <style>
         {`
           .opening-animation-background {
-            --gradient-start: #a6a6a6;
-            --gradient-end: #ffffff;
-            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
-            animation: cinematicBreathe 10s ease-in-out infinite;
-          }
-
-          @keyframes cinematicBreathe {
-            0%, 100% {
-              --gradient-start: #a6a6a6;
-              --gradient-end: #ffffff;
-            }
-            50% {
-              --gradient-start: #b0b0b0; /* Slightly Lighter Grey */
-              --gradient-end: #f5f5f5;   /* Very Light Grey / Off-white */
-            }
+            background: linear-gradient(135deg, #2f2f2f, #121212, #505050); /* Dark slate gradient */
           }
 
           @keyframes shine {
@@ -151,3 +137,8 @@ export const OpeningAnimation = ({ onAnimationComplete }) => {
     </div>
   );
 };
+
+
+
+
+

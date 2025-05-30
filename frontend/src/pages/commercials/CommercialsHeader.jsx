@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import logo from '../../assets/logo_02.png';
 
 // Icons (re-defined or imported if made global)
 const SunIcon = () => (
@@ -59,15 +60,16 @@ const CommercialsHeader = ({ theme, toggleTheme }) => {
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
         <div className="flex items-center">
           <Link to="/commercials" className="flex items-center" aria-label="AD FILMS Commercials Home">
-            <img src="/logo.png" alt="AD FILMS Logo" className="h-8 w-auto sm:h-10" />
-            <span className="ml-2 text-lg sm:text-xl font-semibold text-slate-700 dark:text-neutral-200">
+            <img src={logo} alt="AD FILMS Logo" className="h-30 w-25 object-contain" />
+            <span className="text-lg sm:text-x1 font-semibold text-slate-700 dark:text-neutral-200">
               | <span className="text-amber-500 dark:text-amber-400">Commercials</span>
             </span>
           </Link>
         </div>
         
         <div className="flex items-center space-x-1 md:space-x-2">
-          <div className="hidden sm:flex items-center space-x-1 md:space-x-2">
+          {/* Desktop navigation: Hidden below 'lg' breakpoint */}
+          <div className="hidden lg:flex items-center space-x-1 md:space-x-2">
             <NavLink to="/commercials" className={navLinkClasses} end>Home</NavLink>
             <NavLink to="/commercials/work" className={navLinkClasses}>Our Work</NavLink>
             <NavLink to="/commercials/services" className={navLinkClasses}>Services</NavLink>
@@ -89,7 +91,8 @@ const CommercialsHeader = ({ theme, toggleTheme }) => {
             {theme === 'light' ? <MoonIcon /> : <SunIcon />}
           </button>
 
-          <div className="sm:hidden ml-2">
+          {/* Mobile menu button: Hidden at 'lg' breakpoint and above */}
+          <div className="lg:hidden ml-2">
              <button 
                 onClick={toggleMobileMenu} 
                 className="text-slate-500 dark:text-neutral-400 hover:text-amber-600 dark:hover:text-amber-500 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500" 
@@ -103,10 +106,11 @@ const CommercialsHeader = ({ theme, toggleTheme }) => {
         </div>
       </nav>
 
+      {/* Mobile Menu Panel: Hidden at 'lg' breakpoint and above */}
       <div
         id="commercials-mobile-menu-panel"
         className={`
-          sm:hidden bg-white dark:bg-neutral-800 shadow-xl absolute top-16 left-0 right-0 z-30 
+          lg:hidden bg-white dark:bg-neutral-800 shadow-xl absolute top-16 left-0 right-0 z-30 
           transition-all duration-300 ease-in-out transform origin-top
           ${isMobileMenuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-95 pointer-events-none'}
         `}
@@ -118,7 +122,7 @@ const CommercialsHeader = ({ theme, toggleTheme }) => {
           <NavLink to="/commercials/contact" className={mobileNavLinkClasses} onClick={toggleMobileMenu}>Contact</NavLink>
           <Link 
             to="/" 
-            className={`${mobileNavLinkClasses({isActive:false})} flex items-center`} // Reuse styling, isActive is false
+            className={`${mobileNavLinkClasses({isActive:false})} flex items-center`} 
             onClick={toggleMobileMenu}
             aria-label="Back to main AD FILMS website"
           >

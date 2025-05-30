@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
-import { OpeningAnimation } from './components/OpeningAnimation.jsx'; 
+import { OpeningAnimation } from './components/OpeningAnimation001.jsx'; 
 import HomePage from './pages/HomePage.jsx';
 import YoutubePage from './pages/YoutubePage.jsx';
 import WeddingPage from './pages/WeddingPage.jsx';
