@@ -1,20 +1,31 @@
 
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+
+// General Components
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import { OpeningAnimation } from './components/OpeningAnimation001.jsx'; 
+// import Chatbot from './components/Chatbot.jsx'; 
+
+// General Pages
 import HomePage from './pages/HomePage.jsx';
 import YoutubePage from './pages/YoutubePage.jsx';
 import WeddingPage from './pages/WeddingPage.jsx';
-// Removed CommercialsPage import
-import CommercialsLayout from '../src/pages/commercials/CommercialsLayout.jsx'; 
-// Removed PortfolioPage import
 import { PlaceholderAboutPage, PlaceholderContactPage } from './pages/PlaceholderPage.jsx'; 
-// import Chatbot from './components/Chatbot.jsx'; 
 
-// Theme can be 'light' or 'dark'
-/** @typedef {'light' | 'dark'} Theme */
+// Commercials Section Components & Pages
+import CommercialsHeader from '../src/pages/commercials/CommercialsHeader.jsx';
+import CommercialsFooter from '../src/pages/commercials/CommercialsFooter.jsx';
+import CommercialsHomePage from '../src/pages/commercials/CommercialsHomePage.jsx';
+import { CommercialsPlaceholderWorkPage } from '../src/pages/commercials/CommercialsPlaceholderPages.jsx'; // Removed CommercialsPlaceholderContactPage
+import CommercialsServicesPage from '../src/pages/commercials/CommercialsServicesPage.jsx';
+import CommercialsContactPage from '../src/pages/commercials/CommercialsContactPage.jsx'; // Added new contact page
+
+// Define the Theme type using JSDoc for better editor support
+/**
+ * @typedef {'light' | 'dark'} Theme
+ */
 
 // Inner component to use useLocation hook as App itself is defining HashRouter
 const AppContent = () => {
@@ -40,6 +51,11 @@ const AppContent = () => {
     }
     localStorage.setItem('theme', theme);
   }, [theme]);
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   const toggleTheme = () => {
     setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
@@ -72,24 +88,44 @@ const AppContent = () => {
           appVisible ? 'opacity-100' : 'opacity-0 pointer-events-none' 
         }`}
       >
-        {appVisible && !isCommercialsSection && (
+        {/* Conditional Header */}
+        {appVisible && (
+          isCommercialsSection ? 
+          <CommercialsHeader theme={theme} toggleTheme={toggleTheme} /> :
           <Header theme={theme} toggleTheme={toggleTheme} />
         )}
-        <main className={`flex-grow ${!isCommercialsSection ? 'container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12' : ''}`}>
+
+        {/* Universal Main Content Area Styling */}
+        <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           <Routes>
+            {/* General Routes */}
             <Route path="/" element={<HomePage />} />
             <Route path="/youtube" element={<YoutubePage />} />
             <Route path="/wedding" element={<WeddingPage />} />
-            <Route path="/commercials/*" element={<CommercialsLayout theme={theme} toggleTheme={toggleTheme} />} /> 
-            {/* Removed /portfolio route */}
+            
+            {/* Commercials Routes - Directly in App.jsx */}
+            <Route path="/commercials" element={<CommercialsHomePage />} />
+            <Route path="/commercials/work" element={<CommercialsPlaceholderWorkPage />} />
+            <Route path="/commercials/services" element={<CommercialsServicesPage />} />
+            <Route path="/commercials/contact" element={<CommercialsContactPage />} /> {/* Updated route */}
+            {/* Catch-all for /commercials/any_other_path -> redirect to /commercials home */}
+            <Route path="/commercials/*" element={<Navigate to="/commercials" replace />} />
+
             <Route path="/about" element={<PlaceholderAboutPage />} />
             <Route path="/contact" element={<PlaceholderContactPage />} />
+
+            {/* General Catch-all -> redirect to main home */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
-        {appVisible && !isCommercialsSection && (
+
+        {/* Conditional Footer */}
+        {/* {appVisible && (
+          isCommercialsSection ?
+          <CommercialsFooter /> :
           <Footer />
-        )}
+        )} */}
+        {appVisible && <Footer />}
       </div>
       {/* {appVisible && <Chatbot theme={theme} />} */}
     </>

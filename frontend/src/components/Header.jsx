@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import logo from '../assets/logo_02.png';
 
 // Sun Icon for Light Mode
 const SunIcon = () => (
@@ -102,7 +103,7 @@ const Header = ({ theme, toggleTheme }) => {
     <header className="bg-white/90 dark:bg-neutral-800/90 backdrop-blur-lg shadow-sm sticky top-0 z-40">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
         <Link to="/" aria-label="AD FILMS Home" onClick={() => { setIsPortfolioDropdownOpen(false); setIsMobileMenuOpen(false);}}>
-          <img src="/logo.png" alt="AD FILMS Logo" className="h-10 w-auto" />
+          <img src={logo} alt="AD FILMS Logo" className="h-30 w-30 object-contain" />
         </Link>
         <div className="flex items-center space-x-1 md:space-x-2">
           <div className="hidden sm:flex space-x-1 md:space-x-2 items-center">
