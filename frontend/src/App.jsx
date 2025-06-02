@@ -2,25 +2,33 @@
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
+import './App.css'; // Import global styles
+
 // General Components
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
-import { OpeningAnimation } from './components/OpeningAnimation001.jsx'; 
+import { OpeningAnimation } from './components/OpeningAnimation004.jsx'; 
 // import Chatbot from './components/Chatbot.jsx'; 
 
 // General Pages
 import HomePage from './pages/HomePage.jsx';
 import YoutubePage from './pages/YoutubePage.jsx';
 import WeddingPage from './pages/WeddingPage.jsx';
-import { PlaceholderAboutPage, PlaceholderContactPage } from './pages/PlaceholderPage.jsx'; 
 
-// Commercials Section Components & Pages
+
+
+
+
+
+import AboutPage from './pages/AboutPage.jsx'; // New About Page
+import { PlaceholderContactPage } from './pages/PlaceholderPage.jsx';
+
 import CommercialsHeader from '../src/pages/commercials/CommercialsHeader.jsx';
-import CommercialsFooter from '../src/pages/commercials/CommercialsFooter.jsx';
+// import CommercialsFooter from '../src/pages/commercials/CommercialsFooter.jsx';
 import CommercialsHomePage from '../src/pages/commercials/CommercialsHomePage.jsx';
-import { CommercialsPlaceholderWorkPage } from '../src/pages/commercials/CommercialsPlaceholderPages.jsx'; // Removed CommercialsPlaceholderContactPage
+import { CommercialsPlaceholderWorkPage } from '../src/pages/commercials/CommercialsPlaceholderPages.jsx';
 import CommercialsServicesPage from '../src/pages/commercials/CommercialsServicesPage.jsx';
-import CommercialsContactPage from '../src/pages/commercials/CommercialsContactPage.jsx'; // Added new contact page
+import CommercialsContactPage from '../src/pages/commercials/CommercialsContactPage.jsx';
 
 // Define the Theme type using JSDoc for better editor support
 /**
@@ -111,7 +119,15 @@ const AppContent = () => {
             {/* Catch-all for /commercials/any_other_path -> redirect to /commercials home */}
             <Route path="/commercials/*" element={<Navigate to="/commercials" replace />} />
 
-            <Route path="/about" element={<PlaceholderAboutPage />} />
+
+
+
+            {/* New About Page */}
+            <Route path="/about" element={<AboutPage />} />
+
+
+
+
             <Route path="/contact" element={<PlaceholderContactPage />} />
 
             {/* General Catch-all -> redirect to main home */}

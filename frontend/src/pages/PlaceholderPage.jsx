@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 const PageLayout = ({ title, children }) => (
-  <div className="py-8 sm:py-12 text-center">
+  <div className="pb-8 sm:pb-12 text-center">
     <h1 className="text-3xl sm:text-4xl font-bold text-slate-700 dark:text-neutral-200 mb-6">{title}</h1>
     <div className="text-lg text-slate-600 dark:text-neutral-300 mb-8 max-w-xl mx-auto">
       {children}
@@ -17,17 +16,7 @@ const PageLayout = ({ title, children }) => (
   </div>
 );
 
-export const PlaceholderPortfolioPage = () => (
-  <PageLayout title="Our Portfolio">
-    <p>Our diverse portfolio showcasing various projects will be available here soon. Stay tuned to see our best work!</p>
-  </PageLayout>
-);
-
-export const PlaceholderAboutPage = () => (
-  <PageLayout title="About Us">
-    <p>Learn more about AD FILMS, our mission, our team, and what drives our passion for visual storytelling. Full details coming soon!</p>
-  </PageLayout>
-);
+// PlaceholderAboutPage removed
 
 export const PlaceholderContactPage = () => (
   <PageLayout title="Contact Us">
