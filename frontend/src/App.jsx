@@ -14,15 +14,10 @@ import { OpeningAnimation } from './components/OpeningAnimation004.jsx';
 import HomePage from './pages/HomePage.jsx';
 import YoutubePage from './pages/YoutubePage.jsx';
 import WeddingPage from './pages/WeddingPage.jsx';
+import AboutUs from './pages/AboutPage.jsx';
+import ContactUs from './pages/ContactPage.jsx';
 
-
-
-
-
-
-import AboutPage from './pages/AboutPage.jsx'; // New About Page
-import { PlaceholderContactPage } from './pages/PlaceholderPage.jsx';
-
+// Commercials Section Components & Pages
 import CommercialsHeader from '../src/pages/commercials/CommercialsHeader.jsx';
 // import CommercialsFooter from '../src/pages/commercials/CommercialsFooter.jsx';
 import CommercialsHomePage from '../src/pages/commercials/CommercialsHomePage.jsx';
@@ -119,16 +114,8 @@ const AppContent = () => {
             {/* Catch-all for /commercials/any_other_path -> redirect to /commercials home */}
             <Route path="/commercials/*" element={<Navigate to="/commercials" replace />} />
 
-
-
-
-            {/* New About Page */}
-            <Route path="/about" element={<AboutPage />} />
-
-
-
-
-            <Route path="/contact" element={<PlaceholderContactPage />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/contact" element={<ContactUs />} />
 
             {/* General Catch-all -> redirect to main home */}
             <Route path="*" element={<Navigate to="/" replace />} />
