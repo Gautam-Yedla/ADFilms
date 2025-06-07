@@ -1,0 +1,298 @@
+/* =========================
+   Wedding Navbar Styling
+   ========================= */
+
+/* Header Wrapper */
+.wedding-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.4s ease-in-out;
+}
+
+.wedding-header.dark {
+  background: rgba(38, 38, 38, 0.9);
+}
+
+/* Container */
+.wedding-nav-container {
+  max-width: 1280px;
+  margin: auto;
+  padding: 0 1.5rem;
+}
+
+.wedding-nav-container-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 5rem;
+}
+
+/* Logo */
+.wedding-logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.wedding-logo {
+  height: 4rem;
+  transition: transform 0.3s ease-in-out;
+}
+.wedding-logo:hover {
+  transform: scale(1.05);
+}
+
+.wedding-logo-text {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: #1f2937;
+  margin-left: 0.5rem;
+  position: relative;
+}
+
+.wedding-logo-text.dark {
+  color: #f3f4f6;
+}
+
+.wedding-logo-text::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #ec4899;
+  transition: width 0.3s ease;
+}
+.wedding-logo-text:hover::after {
+  width: 100%;
+}
+
+.wedding-logo-highlight {
+  color: #ec4899;
+}
+.wedding-logo-highlight:hover {
+  color: #db2777;
+}
+
+/* Nav Links */
+.wedding-nav-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.wedding-nav-link {
+  position: relative;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease-in-out;
+  color: #374151;
+}
+
+.wedding-nav-link-inactive.dark {
+  color: #f3f4f6;
+}
+
+.wedding-nav-link-active {
+  color: #ec4899;
+  border-bottom: 2px solid #ec4899;
+  background: rgba(236, 72, 153, 0.08);
+}
+
+.wedding-nav-link-active.dark {
+  color: #f472b6;
+  border-bottom: 2px solid #f472b6;
+  background: rgba(244, 114, 182, 0.1);
+}
+
+.wedding-nav-link:hover {
+  color: #ec4899;
+  background: rgba(236, 72, 153, 0.1);
+  transform: translateY(-1px);
+}
+
+.wedding-nav-link:hover.dark {
+  color: #f472b6;
+  background: rgba(244, 114, 182, 0.1);
+}
+
+.wedding-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: #ec4899;
+  width: 0;
+  transition: width 0.3s ease;
+}
+
+.wedding-nav-link:hover::after {
+  width: 100%;
+}
+
+/* Main Site Link */
+.wedding-main-site-link {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: 0.75rem;
+  color: #374151;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.wedding-main-site-link:hover::before {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  left: -8px;
+  top: 50%;
+  background: #ec4899;
+  transform: translateY(-50%);
+  border-radius: 50%;
+}
+
+/* Theme Toggle Button */
+.wedding-theme-toggle {
+  padding: 0.5rem;
+  border-radius: 9999px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.wedding-theme-toggle:hover {
+  background: rgba(236, 72, 153, 0.1);
+  color: #ec4899;
+  transform: scale(1.1);
+}
+
+/* Icons */
+.wedding-theme-icon,
+.wedding-main-site-icon,
+.wedding-mobile-menu-icon {
+  width: 1.4rem;
+  height: 1.4rem;
+  transition: transform 0.3s ease;
+}
+
+.wedding-theme-icon:hover {
+  transform: rotate(180deg);
+}
+.wedding-mobile-menu-icon:hover {
+  transform: rotate(90deg);
+}
+.wedding-main-site-icon:hover {
+  transform: translateX(-2px);
+}
+
+/* Mobile Menu */
+.wedding-mobile-menu-button {
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+
+.wedding-mobile-menu-panel {
+  transition: all 0.3s ease-in-out;
+  background: rgba(255, 255, 255, 0.98);
+  border-top: 1px solid #e5e7eb;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.06);
+}
+
+.wedding-mobile-menu-content {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 0.5rem;
+}
+
+.wedding-mobile-nav-link {
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: #374151;
+  position: relative;
+}
+
+.wedding-mobile-nav-link:hover {
+  background: rgba(236, 72, 153, 0.1);
+  color: #ec4899;
+  transform: translateX(4px);
+}
+
+.wedding-mobile-nav-link-active {
+  color: #ec4899;
+  background: rgba(236, 72, 153, 0.1);
+}
+
+.wedding-mobile-main-site-link {
+  display: flex;
+  align-items: center;
+}
+
+/* Display Control */
+.wedding-mobile-menu-open {
+  display: block;
+}
+
+.wedding-mobile-menu-closed {
+  display: none;
+}
+
+/* Responsive */
+@media (min-width: 1024px) {
+  .lg\\:hidden {
+    display: none !important;
+  }
+  .lg\\:flex {
+    display: flex !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .wedding-nav-links {
+    display: none;
+  }
+}
+
+
+/* =======================
+   DARK MODE TEXT FIXES
+   ======================= */
+
+/* Inactive nav links in dark mode */
+.wedding-nav-link-inactive.dark,
+.wedding-main-site-link.dark,
+.wedding-mobile-nav-link-inactive.dark,
+.wedding-mobile-main-site-link.dark {
+  color: #f3f4f6;
+}
+
+/* Main site link hover effect in dark mode */
+.wedding-main-site-link.dark:hover::before,
+.wedding-mobile-main-site-link.dark:hover::before {
+  background-color: #f472b6;
+}
+
+/* Mobile toggle icons in dark mode */
+.wedding-mobile-menu-button.dark,
+.wedding-theme-toggle.dark {
+  color: #f3f4f6;
+}

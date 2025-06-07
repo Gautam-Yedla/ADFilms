@@ -1,5 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
+
+import { motion, AnimatePresence } from "framer-motion"
 import { useLocation } from 'react-router-dom'; // Keep for potential query param prefill
 
 // --- Helper Hook for Scroll Animations (adapted for Framer Motion) ---
