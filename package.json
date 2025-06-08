@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "tailwindcss": "^4.1.8"
+  },
+  "dependencies": {
+    "react-fast-marquee": "^1.6.5"
   }
 }
