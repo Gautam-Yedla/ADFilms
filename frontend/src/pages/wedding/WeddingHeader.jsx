@@ -145,8 +145,7 @@
 
 
 
-
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Link as RouterLink } from 'react-router-dom';
 import logo from '../../assets/logo_02.png';
 import '../../styling/wedding.css';
@@ -191,10 +190,30 @@ const ArrowLeftIcon = () => (
  */
 const WeddingNavbar = ({ theme, toggleTheme, className = '' }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isPortfolioDropdownOpen, setIsPortfolioDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  const togglePortfolioDropdown = () => {
+    setIsPortfolioDropdownOpen(prev => !prev);
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsPortfolioDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const navLinkClasses = ({ isActive }) =>
     `wedding-nav-link ${isActive ? 'wedding-nav-link-active' : 'wedding-nav-link-inactive'}`;
@@ -206,52 +225,104 @@ const WeddingNavbar = ({ theme, toggleTheme, className = '' }) => {
     <header className={`wedding-header ${theme === 'dark' ? 'dark' : ''} ${className}`.trim()}>
       <nav className="wedding-nav-container">
         <div className="wedding-nav-container-flex">
-        <div className="wedding-logo-container">
-          <RouterLink to="/wedding" className="flex items-center" aria-label="AD FILMS Weddings Home">
-            <img src={logo} alt="AD FILMS Logo" className="wedding-logo" />
-            <span className="wedding-logo-text">
-              | <span className="wedding-logo-highlight">Weddings</span>
-            </span>
-          </RouterLink>
-        </div>
-
-        <div className="flex items-center space-x-1 md:space-x-2">
-          {/* Desktop navigation: Hidden below 'lg' breakpoint */}
-          <div className="hidden lg:flex items-center wedding-nav-links">
-            <NavLink to="/wedding" className={navLinkClasses} end>Home</NavLink>
-            <NavLink to="/wedding/portfolio" className={navLinkClasses}>Portfolio</NavLink>
-            <NavLink to="/wedding/approach" className={navLinkClasses}>Our Approach</NavLink>
-            <NavLink to="/wedding/contact" className={navLinkClasses}>Contact</NavLink>
-            <RouterLink
-              to="/"
-              className={`wedding-mobile-main-site-link ${theme === 'dark' ? 'dark' : ''}`}
-              aria-label="Back to main AD FILMS website"
-            >
-              <ArrowLeftIcon /> Main Site
+          <div className="wedding-logo-container">
+            <RouterLink to="/wedding" className="flex items-center" aria-label="AD FILMS Weddings Home">
+              <img src={logo} alt="AD FILMS Logo" className="wedding-logo" />
+              <span className="wedding-logo-text">
+                | <span className="wedding-logo-highlight">Weddings</span>
+              </span>
             </RouterLink>
           </div>
 
-          <button
-            onClick={toggleTheme}
-            aria-label={theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme'}
-            className="wedding-theme-toggle"
-          >
-            {theme === 'light' ? <MoonIcon /> : <SunIcon />}
-          </button>
+          <div className="flex items-center space-x-1 md:space-x-2">
+            {/* Desktop navigation: Hidden below 'lg' breakpoint */}
+            <div className="hidden lg:flex items-center wedding-nav-links">
+              <NavLink to="/wedding" className={navLinkClasses} end>Home</NavLink>
+              <div className="wedding-portfolio-dropdown-group" ref={dropdownRef}>
+                <div className="wedding-portfolio-dropdown">
+                  <button
+                    onClick={togglePortfolioDropdown}
+                    className={navLinkClasses({ isActive: false })}
+                    tabIndex={0}
+                    aria-haspopup="true"
+                    aria-expanded={isPortfolioDropdownOpen}
+                  >
+                    Portfolio <span className="wedding-portfolio-dropdown-arrow">▼</span>
+                  </button>
+                  <div
+                    className="wedding-portfolio-dropdown-menu"
+                    style={{ display: isPortfolioDropdownOpen ? 'block' : 'none' }}
+                  >
+                    <NavLink
+                      to="/wedding/wedding-section"
+                      className={navLinkClasses}
+                      onClick={() => setIsPortfolioDropdownOpen(false)}
+                    >
+                      Wedding
+                    </NavLink>
+                    <NavLink
+                      to="/wedding/engagement"
+                      className={navLinkClasses}
+                      onClick={() => setIsPortfolioDropdownOpen(false)}
+                    >
+                      Engagement
+                    </NavLink>
+                    <NavLink
+                      to="/wedding/haldi"
+                      className={navLinkClasses}
+                      onClick={() => setIsPortfolioDropdownOpen(false)}
+                    >
+                      Haldi
+                    </NavLink>
+                    <NavLink
+                      to="/wedding/prewedding"
+                      className={navLinkClasses}
+                      onClick={() => setIsPortfolioDropdownOpen(false)}
+                    >
+                      Pre Wedding
+                    </NavLink>
+                    <NavLink
+                      to="/wedding/sangeet"
+                      className={navLinkClasses}
+                      onClick={() => setIsPortfolioDropdownOpen(false)}
+                    >
+                      Sangeet
+                    </NavLink>
+                  </div>
+                </div>
+              </div>
+              <NavLink to="/wedding/approach" className={navLinkClasses}>Our Approach</NavLink>
+              <NavLink to="/wedding/contact" className={navLinkClasses}>Contact</NavLink>
+              <RouterLink
+                to="/"
+                className={`wedding-mobile-main-site-link ${theme === 'dark' ? 'dark' : ''}`}
+                aria-label="Back to main AD FILMS website"
+              >
+                <ArrowLeftIcon /> Main Site
+              </RouterLink>
+            </div>
 
-          {/* Mobile menu button: Hidden at 'lg' breakpoint and above */}
-          <div className="lg:hidden ml-2">
             <button
-              onClick={toggleMobileMenu}
-              className="wedding-mobile-menu-button"
-              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isMobileMenuOpen}
-              aria-controls="wedding-mobile-menu-panel"
+              onClick={toggleTheme}
+              aria-label={theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme'}
+              className="wedding-theme-toggle"
             >
-              {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
+              {theme === 'light' ? <MoonIcon /> : <SunIcon />}
             </button>
+
+            {/* Mobile menu button: Hidden at 'lg' breakpoint and above */}
+            <div className="lg:hidden ml-2">
+              <button
+                onClick={toggleMobileMenu}
+                className="wedding-mobile-menu-button"
+                aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isMobileMenuOpen}
+                aria-controls="wedding-mobile-menu-panel"
+              >
+                {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
+              </button>
+            </div>
           </div>
-        </div>
         </div>
       </nav>
 

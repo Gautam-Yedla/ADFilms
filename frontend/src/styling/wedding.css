@@ -256,6 +256,85 @@
   display: none;
 }
 
+
+/* Portfolio Dropdown Styles */
+
+
+
+
+
+
+
+
+
+.wedding-portfolio-dropdown-group {
+  position: relative;
+}
+.wedding-portfolio-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.wedding-portfolio-dropdown > .wedding-nav-link {
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.wedding-portfolio-dropdown-arrow {
+  font-size: 0.8em;
+  margin-left: 0.2em;
+}
+.wedding-portfolio-dropdown-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  min-width: 180px;
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 16px 0 rgba(0,0,0,0.10);
+  padding: 0.5rem 0;
+  z-index: 100;
+  margin-top: 0.25rem;
+}
+.wedding-portfolio-dropdown:hover .wedding-portfolio-dropdown-menu,
+.wedding-portfolio-dropdown:focus-within .wedding-portfolio-dropdown-menu {
+  display: block;
+}
+.wedding-portfolio-dropdown-menu .wedding-nav-link {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0;
+  background: none;
+  color: #4b5563;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: left;
+  border: none;
+  transition: background 0.2s, color 0.2s;
+}
+.wedding-portfolio-dropdown-menu .wedding-nav-link:hover,
+.wedding-portfolio-dropdown-menu .wedding-nav-link:focus {
+  background: #fdf2f8;
+  color: #ec4899;
+}
+
+/* Dark mode for dropdown */
+.wedding-header.dark .wedding-portfolio-dropdown-menu {
+  background: #23272f;
+  box-shadow: 0 4px 16px 0 rgba(0,0,0,0.25);
+}
+.wedding-header.dark .wedding-portfolio-dropdown-menu .wedding-nav-link {
+  color: #e5e7eb;
+}
+.wedding-header.dark .wedding-portfolio-dropdown-menu .wedding-nav-link:hover,
+.wedding-header.dark .wedding-portfolio-dropdown-menu .wedding-nav-link:focus {
+  background: #374151;
+  color: #f472b6;
+}
+
 /* Responsive */
 @media (min-width: 1024px) {
   .lg\\:hidden {
