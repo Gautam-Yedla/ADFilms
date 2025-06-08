@@ -315,13 +315,12 @@ const AppContent = () => {
           </Routes>
         </main>
 
-        {/* Conditional Footer */}
-        {/* {appVisible && (
-          isCommercialsSection ?
-          <CommercialsFooter /> :
+       {/* Conditional Footer */}
+        {appVisible && (
+          isCommercialsSection ? <Footer /> :
+          isWeddingSection ? <WeddingFooter /> :
           <Footer />
-        )} */}
-        {appVisible && <Footer />}
+        )}
       </div>
       {/* {appVisible && <Chatbot theme={theme} />} */}
     </>
