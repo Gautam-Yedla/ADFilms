@@ -329,7 +329,7 @@ const AppContent = () => {
 
         {/* Conditional Footer */}
         {appVisible && (
-          isCommercialsSection ? null :
+          isCommercialsSection ? <Footer /> :
           isWeddingSection ? <WeddingFooter /> :
           <Footer />
         )}
