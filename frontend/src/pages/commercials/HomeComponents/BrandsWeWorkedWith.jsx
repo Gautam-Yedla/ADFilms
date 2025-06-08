@@ -13,7 +13,7 @@ const brandLogos = [
 
 export default function BrandsWeWorkedWith() {
   return (
-    <section className="py-28 px-4 w-full lg:w-[115%] max-w-6xl mx-auto">
+    <section className="py-28 pb-8 px-4 w-full lg:w-[115%] max-w-6xl mx-auto">
       <h2 className="text-4xl font-bold text-center text-neutral-100 mb-4">
         Brands We’ve <span className="text-yellow-500">Worked With</span>
       </h2>

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function FeaturedAdOfTheMonth() {
   return (
-    <section className="py-20 bg-white px-6 w-full lg:w-[115%]">
+    <section className="py-20 bg-white px-6 w-full">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-4xl font-bold text-gray-800 mb-2">
           Featured Ad of the <span className="text-yellow-500">Month</span>
@@ -16,6 +16,7 @@ export default function FeaturedAdOfTheMonth() {
         <div className="rounded-xl overflow-hidden shadow-lg border border-slate-200 dark:border-neutral-700 w-[75%] mx-auto">
           {/* Use a video or replace with an image */}
           <video
+          className="w-full h-auto"
             controls
             poster="../../assets/nike.jpg"
           >

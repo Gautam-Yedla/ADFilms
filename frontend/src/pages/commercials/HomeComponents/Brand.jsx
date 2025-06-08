@@ -27,7 +27,7 @@ const values = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-20 bg-white px-6 w-full lg:w-[115%]">
+    <section className="py-20 bg-white px-6 w-full">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-center text-gray-800 mb-4">
           Why Brands <span className="text-yellow-500">Choose Us</span>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
-    <div className="relative w-full lg:w-[121%] h-screen  !text-white -mt-24">
+    <div className="relative lg:w-[104.40%] h-screen -mt-[6rem] py-0">
       {/* Background Video */}
       <video
         autoPlay
@@ -30,10 +30,10 @@ const HeroSection = () => {
           excellence.
         </p>
         <Link
-          to="/commercials/CommercialPlaceHolderPages"
+          to="/commercials/contact?subject=Quote%20Request"
           className="inline-block my-10 px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-white text-lg font-semibold rounded-xl shadow-lg transition-all duration-300"
         >
-          Explore Our Work
+          Contact US
         </Link>
       </div>
     </div>

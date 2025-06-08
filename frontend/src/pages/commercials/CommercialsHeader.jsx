@@ -51,47 +51,58 @@ const CommercialsHeader = ({ theme, toggleTheme }) => {
     <header className="commercials-header">
       <nav className="commercials-nav-container">
         <div className="commercials-logo-container">
-          <Link to="/commercials" className="flex items-center" aria-label="AD FILMS Commercials Home">
+          <Link
+            to="/commercials"
+            className="flex items-center"
+            aria-label="AD FILMS Commercials Home"
+          >
             <img src={logo} alt="AD FILMS Logo" className="commercials-logo" />
             <span className="commercials-logo-text">
               | <span className="commercials-logo-highlight">Commercials</span>
             </span>
           </Link>
         </div>
-        
+
         <div className="flex items-center space-x-1 md:space-x-2">
           {/* Desktop navigation: Hidden below 'lg' breakpoint */}
           <div className="hidden lg:flex items-center commercials-nav-links">
-            <NavLink to="/commercials" className={navLinkClasses} end>Home</NavLink>
-            <NavLink to="/commercials/work" className={navLinkClasses}>Our Work</NavLink>
-            <NavLink to="/commercials/services" className={navLinkClasses}>Services</NavLink>
-            <NavLink to="/commercials/contact" className={navLinkClasses}>Contact</NavLink>
-            <Link 
-              to="/" 
+            {/* <NavLink to="/commercials" className={navLinkClasses} end>Home</NavLink> */}
+            {/* <NavLink to="/commercials/work" className={navLinkClasses}>Our Work</NavLink> */}
+            {/* <NavLink to="/commercials/services" className={navLinkClasses}>Services</NavLink> */}
+            <Link
+              to="/"
               className="commercials-main-site-link"
               aria-label="Back to main AD FILMS website"
             >
-              <ArrowLeftIcon /> Main Site
+              {/* <ArrowLeftIcon />  */}
+              Home
             </Link>
+            <NavLink to="/commercials/contact" className={navLinkClasses}>
+              Contact
+            </NavLink>
           </div>
-          
+
           <button
             onClick={toggleTheme}
-            aria-label={theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme'}
+            aria-label={
+              theme === "light"
+                ? "Switch to dark theme"
+                : "Switch to light theme"
+            }
             className="commercials-theme-toggle"
           >
-            {theme === 'light' ? <MoonIcon /> : <SunIcon />}
+            {theme === "light" ? <MoonIcon /> : <SunIcon />}
           </button>
 
           {/* Mobile menu button: Hidden at 'lg' breakpoint and above */}
           <div className="lg:hidden ml-2">
-             <button 
-                onClick={toggleMobileMenu} 
-                className="commercials-mobile-menu-button" 
-                aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-                aria-expanded={isMobileMenuOpen}
-                aria-controls="commercials-mobile-menu-panel"
-              >
+            <button
+              onClick={toggleMobileMenu}
+              className="commercials-mobile-menu-button"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="commercials-mobile-menu-panel"
+            >
               {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
             </button>
           </div>
@@ -101,16 +112,45 @@ const CommercialsHeader = ({ theme, toggleTheme }) => {
       {/* Mobile Menu Panel: Hidden at 'lg' breakpoint and above */}
       <div
         id="commercials-mobile-menu-panel"
-        className={`commercials-mobile-menu-panel ${isMobileMenuOpen ? 'commercials-mobile-menu-open' : 'commercials-mobile-menu-closed'}`}
+        className={`commercials-mobile-menu-panel ${
+          isMobileMenuOpen
+            ? "commercials-mobile-menu-open"
+            : "commercials-mobile-menu-closed"
+        }`}
       >
         <div className="commercials-mobile-menu-content">
-          <NavLink to="/commercials" className={mobileNavLinkClasses} onClick={toggleMobileMenu} end>Home</NavLink>
-          <NavLink to="/commercials/work" className={mobileNavLinkClasses} onClick={toggleMobileMenu}>Our Work</NavLink>
-          <NavLink to="/commercials/services" className={mobileNavLinkClasses} onClick={toggleMobileMenu}>Services</NavLink>
-          <NavLink to="/commercials/contact" className={mobileNavLinkClasses} onClick={toggleMobileMenu}>Contact</NavLink>
-          <Link 
-            to="/" 
-            className="commercials-mobile-main-site-link" 
+          <NavLink
+            to="/commercials"
+            className={mobileNavLinkClasses}
+            onClick={toggleMobileMenu}
+            end
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/commercials/work"
+            className={mobileNavLinkClasses}
+            onClick={toggleMobileMenu}
+          >
+            Our Work
+          </NavLink>
+          <NavLink
+            to="/commercials/services"
+            className={mobileNavLinkClasses}
+            onClick={toggleMobileMenu}
+          >
+            Services
+          </NavLink>
+          <NavLink
+            to="/commercials/contact"
+            className={mobileNavLinkClasses}
+            onClick={toggleMobileMenu}
+          >
+            Contact
+          </NavLink>
+          <Link
+            to="/"
+            className="commercials-mobile-main-site-link"
             onClick={toggleMobileMenu}
             aria-label="Back to main AD FILMS website"
           >

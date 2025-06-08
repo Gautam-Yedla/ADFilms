@@ -32,8 +32,15 @@ const spotlightProjects = [
 
 export default function ProjectSpotlight() {
   return (
-    <section className="bg-white py-20 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-20 bg-white px-6 w-full mx-0">
+      <div className="max-w-6xl mx-auto text-center">
+        <h2 className="text-4xl font-bold text-gray-800 mb-2">
+          Project <span className="text-yellow-500">Spotlight</span>
+        </h2>
+        <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+          Every frame tells a story. These campaigns didn’t just capture
+          attention — they moved audiences and delivered real impact.
+        </p>
         <div className="space-y-16">
           {spotlightProjects.map((project, index) => (
             <div

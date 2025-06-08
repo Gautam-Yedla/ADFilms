@@ -28,8 +28,7 @@ const logos = [
 
 const BrandLogoMarquee = () => {
   return (
-    <section className="py-16">
-      
+    <section className="py-16 pb-0">
       <Marquee pauseOnHover gradient={false} speed={100}>
         {logos.map((logo, index) => (
           <div key={index} className="mx-10">

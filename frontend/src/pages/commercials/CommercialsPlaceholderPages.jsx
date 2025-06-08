@@ -3,29 +3,29 @@ import { Link } from 'react-router-dom';
 import VideoPortfolioGrid from "./OurWork/VideoPortfolioGrid";
 import ProjectSpotlight from "./OurWork/ProjectHighlight";
 import ClientTestimonials from "./OurWork/ClientTestimonials";
-import AwardsRecognitions from "./OurWork/AwardsRecognitions";
-import PerformanceMetrics from "./OurWork/Performance";
+import FeaturedAdOfTheMonth from './HomeComponents/FeaturedAdOfTheMonth';
+// import AwardsRecognitions from "./OurWork/AwardsRecognitions";
+// import PerformanceMetrics from "./OurWork/Performance";
 
 const PageLayout = ({ title, children }) => (
-  <div className="py-8 sm:py-12 text-center">
-    <h1 className="text-3xl sm:text-4xl font-bold text-slate-700 dark:text-neutral-200 mb-6">
+  <div className="py-8 sm:py-12 text-center pxx-0 w-full">
+    <h1 className="text-3xl sm:text-4xl font-bold text-slate-700 dark:text-neutral-200 mb-6 ">
       {title}
     </h1>
     <div className="text-lg text-slate-600 dark:text-neutral-300 mb-8 max-w-xl mx-auto text-left space-y-4">
       {children}
     </div>
     <VideoPortfolioGrid />
-    <ProjectSpotlight />
+    <FeaturedAdOfTheMonth />
     <ClientTestimonials />
-    <AwardsRecognitions />
-    <PerformanceMetrics />
+    <ProjectSpotlight />
+    {/* <AwardsRecognitions /> */}
+    {/* <PerformanceMetrics /> */}
   </div>
 );
 
 export const CommercialsPlaceholderWorkPage = () => (
-  <PageLayout title="Our Commercial Work">
-    <p>Our portfolio of impactful ad commercials will be showcased here soon. Get ready to see creativity in motion!</p>
-  </PageLayout>
+  <PageLayout title="Our Commercial Work" />
 );
 
 // CommercialsPlaceholderServicesPage removed
