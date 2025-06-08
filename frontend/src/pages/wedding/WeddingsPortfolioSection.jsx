@@ -69,19 +69,19 @@ const WeddingPortfolioSection = () => {
   const handleCategoryClick = (categoryTitle) => {
     switch (categoryTitle) {
       case 'Engagements':
-        navigate('/engagement');
+        navigate('/wedding/engagement');
         break;
       case 'Weddings':
-        navigate('/wedding-section');
+        navigate('/wedding/wedding-section');
         break;
       case 'Sangeet':
-        navigate('/sangeet'); // add this route if needed
+        navigate('/wedding/sangeet'); // add this route if needed
         break;
       case 'Haldi':
-        navigate('/haldi'); // add this route if needed
+        navigate('/wedding/haldi'); // add this route if needed
         break;
       case 'Pre-Wedding Shoots':
-        navigate('/prewedding'); // add this route if needed
+        navigate('/wedding/prewedding'); // add this route if needed
         break;
       default:
         navigate('/wedding');
